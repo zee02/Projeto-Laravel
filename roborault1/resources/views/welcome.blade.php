@@ -1,6 +1,7 @@
-@extends('Layouts.outer')
+@extends('layouts.outer')
 
 @section('content')
+
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex align-items-center">
 
@@ -859,5 +860,6 @@
     </section><!-- End Contact Section -->
 
   </main><!-- End #main -->
+
 
 @endsection
