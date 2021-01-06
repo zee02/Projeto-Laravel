@@ -21,9 +21,9 @@
     <!-- JQVMap -->
     <link rel="stylesheet" href="plugins/jqvmap/jqvmap.min.css">
     <!-- DataTables -->
-  <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-  <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-  <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="dist/css/adminlte.min.css">
     <!-- overlayScrollbars -->
@@ -55,7 +55,8 @@
             <!-- SEARCH FORM -->
             <form class="form-inline ml-3">
                 <div class="input-group">
-                    <input class="form-control form-control-navbar" type="search" placeholder="Pesquisar" aria-label="Search">
+                    <input class="form-control form-control-navbar" type="search" placeholder="Pesquisar"
+                        aria-label="Search">
                     <div class="input-group-append">
                         <button class="btn btn-navbar" type="submit">
                             <i class="fas fa-search"></i>
@@ -189,15 +190,14 @@
 
                     </div>
                     <div class="ml-auto">
-                        <a class="btn btn-secondary" href="{{ route('logout') }}"
-                        onclick="event.preventDefault();
+                        <a class="btn btn-secondary" href="{{ route('logout') }}" onclick="event.preventDefault();
                                       document.getElementById('logout-form').submit();">
-                         {{ __('Logout') }}
-                     </a>
+                            {{ __('Logout') }}
+                        </a>
 
-                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                         @csrf
-                     </form>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
                     </div>
                 </div>
 
@@ -240,7 +240,7 @@
                                         <i class="fas fa-list nav-icon"></i>
                                         <p>Listar Projetos</p>
                                     </a>
-                                </li>                              
+                                </li>
                             </ul>
                         </li>
                         <li class="nav-item">
@@ -263,7 +263,7 @@
                                         <i class="fas fa-list nav-icon"></i>
                                         <p>Listar Elementos</p>
                                     </a>
-                                </li>                              
+                                </li>
                             </ul>
                         </li>
                         <li class="nav-item">
@@ -286,7 +286,7 @@
                                         <i class="fas fa-list nav-icon"></i>
                                         <p>Gerir Galeria</p>
                                     </a>
-                                </li>                              
+                                </li>
                             </ul>
                         </li>
                         <li class="nav-item">
@@ -309,7 +309,7 @@
                                         <i class="fas fa-list nav-icon"></i>
                                         <p>Gerir Notícias</p>
                                     </a>
-                                </li>                              
+                                </li>
                             </ul>
                         </li>
                         <li class="nav-item">
@@ -326,8 +326,8 @@
                                         <i class="fas fa-edit nav-icon"></i>
                                         <p>Modificar Sobre Nós</p>
                                     </a>
-                                </li>                             
-                            </ul>  
+                                </li>
+                            </ul>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
@@ -343,8 +343,8 @@
                                         <i class="fas fa-list nav-icon"></i>
                                         <p>Gerir Contactos</p>
                                     </a>
-                                </li>                             
-                            </ul>  
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </nav>
@@ -391,7 +391,8 @@
                                 <div class="icon">
                                     <i class="fas fa-project-diagram"></i>
                                 </div>
-                                <a href="#" class="small-box-footer">Listar <i class="fas fa-arrow-circle-right"></i></a>
+                                <a href="#" class="small-box-footer">Listar <i
+                                        class="fas fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
                         <!-- ./col -->
@@ -455,75 +456,89 @@
                             <!-- Custom tabs (Charts with tabs)-->
                             <div class="card">
                                 <div class="card-header bg-lightblue">
-                                  <h3 class="card-title">Projetos em Desenvolvimento</h3>
+                                    <h3 class="card-title">Projetos em Desenvolvimento</h3>
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
                                     <table id="projetos" class="table table-bordered table-striped">
                                         <thead>
-                                        <tr>
-                                          <th>Designação</th>
-                                          <th>Categoria</th>
-                                          <th>Autor(es)</th>
-                                          <th>Data de Início</th>
-                                          <th>Github</th>
-                                        </tr>
+                                            <tr>
+                                                <th>Designação</th>
+                                                <th>Categoria</th>
+                                                <th>Autor(es)</th>
+                                                <th>Data de Início</th>
+                                                <th>Github</th>
+                                            </tr>
                                         </thead>
                                         <tbody>
-                                        <tr>
-                                          <td>Tabela Periódica</td>
-                                          <td>Artefactos</td>
-                                          <td>Francisco Requicha</td>
-                                          <td>18-09-2020</td>
-                                          <td><a href="https://github.com/franciscolopes26/RoboticaAERP">https://github.com/franciscolopes26/RoboticaAERP</a></td>
-                                        </tr>
-                                        <tr>
-                                          <td>BotnRoll One A</td>
-                                          <td>Robótica</td>
-                                          <td>José Fernandes</td>
-                                          <td>18-09-2020</td>
-                                          <td><a href="https://github.com/franciscolopes26/RoboticaAERP">https://github.com/franciscolopes26/RoboticaAERP</a></td>
-                                        </tr>
-                                        <tr>
-                                          <td>Arduino Lauchpad</td>
-                                          <td>Artefactos</td>
-                                          <td>Cristiano Nazário</td>
-                                          <td>03-02-2020</td>
-                                          <td><a href="https://github.com/franciscolopes26/RoboticaAERP">https://github.com/franciscolopes26/RoboticaAERP</a></td>
-                                        </tr>
-                                        <tr>
-                                          <td>Arduino Smart Car</td>
-                                          <td>Robótica</td>
-                                          <td>David Silva</td>
-                                          <td>03-02-2020</td>
-                                          <td><a href="https://github.com/franciscolopes26/RoboticaAERP">https://github.com/franciscolopes26/RoboticaAERP</a></td>
-                                        </tr>
-                                        <tr>
-                                           <td>Arduino Tank</td>
-                                           <td>Robótica</td>
-                                           <td>Rodrigo Pinto</td>
-                                           <td>03-02-2020</td>
-                                           <td><a href="https://github.com/franciscolopes26/RoboticaAERP">https://github.com/franciscolopes26/RoboticaAERP</a></td>
-                                        </tr>
-                                        <tr>
-                                           <td>Robô Anprino</td>
-                                           <td>Robótica</td>
-                                           <td>10CT1 e 2GPSI</td>
-                                           <td>07-10-2020</td>
-                                           <td><a href="https://github.com/franciscolopes26/RoboticaAERP">https://github.com/franciscolopes26/RoboticaAERP</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Horta Inteligente</td>
-                                            <td>Artefactos</td>
-                                            <td>José Fernandes</td>
-                                            <td>08-01-2021</td>
-                                            <td><a href="https://github.com/franciscolopes26/RoboticaAERP">https://github.com/franciscolopes26/RoboticaAERP</a></td>
-                                         </tr>
-                                        </tfoot>
-                                      </table>
+                                            <tr>
+                                                <td>Tabela Periódica</td>
+                                                <td>Artefactos</td>
+                                                <td>Francisco Requicha</td>
+                                                <td>18-09-2020</td>
+                                                <td><a
+                                                        href="https://github.com/franciscolopes26/RoboticaAERP">https://github.com/franciscolopes26/RoboticaAERP</a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>BotnRoll One A</td>
+                                                <td>Robótica</td>
+                                                <td>José Fernandes</td>
+                                                <td>18-09-2020</td>
+                                                <td><a
+                                                        href="https://github.com/franciscolopes26/RoboticaAERP">https://github.com/franciscolopes26/RoboticaAERP</a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Arduino Lauchpad</td>
+                                                <td>Artefactos</td>
+                                                <td>Cristiano Nazário</td>
+                                                <td>03-02-2020</td>
+                                                <td><a
+                                                        href="https://github.com/franciscolopes26/RoboticaAERP">https://github.com/franciscolopes26/RoboticaAERP</a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Arduino Smart Car</td>
+                                                <td>Robótica</td>
+                                                <td>David Silva</td>
+                                                <td>03-02-2020</td>
+                                                <td><a
+                                                        href="https://github.com/franciscolopes26/RoboticaAERP">https://github.com/franciscolopes26/RoboticaAERP</a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Arduino Tank</td>
+                                                <td>Robótica</td>
+                                                <td>Rodrigo Pinto</td>
+                                                <td>03-02-2020</td>
+                                                <td><a
+                                                        href="https://github.com/franciscolopes26/RoboticaAERP">https://github.com/franciscolopes26/RoboticaAERP</a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Robô Anprino</td>
+                                                <td>Robótica</td>
+                                                <td>10CT1 e 2GPSI</td>
+                                                <td>07-10-2020</td>
+                                                <td><a
+                                                        href="https://github.com/franciscolopes26/RoboticaAERP">https://github.com/franciscolopes26/RoboticaAERP</a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Horta Inteligente</td>
+                                                <td>Artefactos</td>
+                                                <td>José Fernandes</td>
+                                                <td>08-01-2021</td>
+                                                <td><a
+                                                        href="https://github.com/franciscolopes26/RoboticaAERP">https://github.com/franciscolopes26/RoboticaAERP</a>
+                                                </td>
+                                            </tr>
+                                            </tfoot>
+                                    </table>
                                 </div>
                                 <!-- /.card-body -->
-                              </div>
+                            </div>
                         </section>
                         <!-- /.Left col -->
                     </div>
@@ -584,22 +599,22 @@
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="dist/js/pages/dashboard.js"></script>
 
-<!-- DataTables  & Plugins -->
-<script src="plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-<script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-<script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-<script src="plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
-<script src="plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-<script src="plugins/jszip/jszip.min.js"></script>
-<script src="plugins/pdfmake/pdfmake.min.js"></script>
-<script src="plugins/pdfmake/vfs_fonts.js"></script>
-<script src="plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-<script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
-<script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-<!-- Page specific script -->
-<script>
-    $(function () {
+    <!-- DataTables  & Plugins -->
+    <script src="plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="plugins/jszip/jszip.min.js"></script>
+    <script src="plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+    <!-- Page specific script -->
+    <script>
+        $(function () {
       $("#projetos").DataTable({
         "responsive": true, "lengthChange": true, "autoWidth": false,
         "language": {
@@ -611,7 +626,7 @@
         $('.nav-link').removeClass('active');
         $(this).toggleClass('active');
     });
-  </script>
+    </script>
 
 </body>
 
