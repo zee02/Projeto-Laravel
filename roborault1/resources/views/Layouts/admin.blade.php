@@ -24,6 +24,9 @@
     <link rel="stylesheet" href="/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="/plugins/select2/css/select2.min.css">
+    <link rel="stylesheet" href="/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="/dist/css/adminlte.min.css">
     <!-- overlayScrollbars -->
@@ -355,7 +358,7 @@
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
-        @yield('content')
+            @yield('content')
         </div>
         <!-- /.content-wrapper -->
         <footer class="main-footer">
@@ -422,6 +425,8 @@
     <script src="/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
     <script src="/plugins/datatables-buttons/js/buttons.print.min.js"></script>
     <script src="/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+    <!-- Select2 -->
+    <script src="/plugins/select2/js/select2.full.min.js"></script>
     <!-- Page specific script -->
     <script>
         $(function () {
@@ -436,7 +441,18 @@
         $('.nav-link').removeClass('active');
         $(this).toggleClass('active');
     });
+
+     //Initialize Select2 Elements
+     $('.select2').select2();
+
+
+     $('#btnLimpar').click(function (e) { 
+        
+        $('.select2').val('DO').trigger('change');;
+     });
     </script>
+
+
 
 </body>
 
