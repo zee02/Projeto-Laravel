@@ -42,7 +42,17 @@ class ProjetoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Validação do Formulário Projeto
+        request()->validate([
+            'inputDesig' => 'required',
+            'selectCat' => 'required',
+            'inputResp' => 'required',
+            'inputData' => 'required',
+            'inputGit' => 'required',
+            'textDesc' => 'required'
+
+        ]);
+        //Inserção de dados no Forumulário Projeto
         $projeto = new Projeto();
         $projeto->designacao = request('inputDesig');
         $projeto->categoria_id = request('selectCat');
