@@ -15,7 +15,18 @@ class CreateProjetosTable extends Migration
     {
         Schema::create('projetos', function (Blueprint $table) {
             $table->id();
+            $table->string('designacao');
+            $table->unsignedBigInteger('categoria_id');
+            $table->string('responsavel');
+            $table->date('dataInicio');
+            $table->string('github');
+            $table->text('descricao');
             $table->timestamps();
+
+            $table->foreign('categoria_id')
+                ->references('id')
+                ->on('categorias')
+                ->OnDelete('cascade');
         });
     }
 

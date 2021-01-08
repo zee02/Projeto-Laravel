@@ -233,7 +233,7 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{ route('projeto.create') }}" class="nav-link">
+                                    <a href="{{ route('projetos.create') }}" class="nav-link">
                                         <i class="far fa-file nav-icon"></i>
                                         <p>Novo Projeto</p>
                                     </a>
@@ -449,7 +449,32 @@
      $('#btnLimpar').click(function (e) { 
         
         $('.select2').val('DO').trigger('change');;
+        $('div.imgPreview').empty();
      });
+     $(function() {
+        // Multiple images preview with JavaScript
+        var multiImgPreview = function(input, imgPreviewPlaceholder) {
+
+            if (input.files) {
+                var filesAmount = input.files.length;
+
+                for (i = 0; i < filesAmount; i++) {
+                    var reader = new FileReader();
+
+                    reader.onload = function(event) {
+                        $($.parseHTML('<img width="200" class="img-thumbnail">')).attr('src', event.target.result).appendTo(imgPreviewPlaceholder);
+                    }
+
+                    reader.readAsDataURL(input.files[i]);
+                }
+            }
+
+        };
+
+        $('#images').on('change', function() {
+            multiImgPreview(this, 'div.imgPreview');
+        });
+        });    
     </script>
 
 
