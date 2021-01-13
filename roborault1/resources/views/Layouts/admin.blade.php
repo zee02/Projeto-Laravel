@@ -239,7 +239,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="./index2.html" class="nav-link">
+                                    <a href="{{ route('projetos') }}" class="nav-link">
                                         <i class="fas fa-list nav-icon"></i>
                                         <p>Listar Projetos</p>
                                     </a>
@@ -433,7 +433,8 @@
       $("#projetos").DataTable({
         "responsive": true, "lengthChange": true, "autoWidth": false,
         "language": {
-            "url": "plugins/datatables/Portuguese.json"}
+            "url": "plugins/datatables/Portuguese.json"},
+            "order": [[3, "desc"]]
       });
     });
 

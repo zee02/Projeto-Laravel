@@ -18,8 +18,10 @@ class ProjetoController extends Controller
      */
     public function index()
     {
-        //
-        return view('projetos.index');
+        //Listagem de projetos
+        $projetos = Projeto::all(); //select * from projetos;
+        return view('projetos.index', compact('projetos'));
+        //o método compact serve para passar o resultado do select para a view index
     }
 
     /**
@@ -71,6 +73,7 @@ class ProjetoController extends Controller
           ]);
 
           if($request->hasfile('imageFile')) {
+              $projeto->save();
               foreach($request->file('imageFile') as $file)
               {
                   $name = $file->getClientOriginalName();
@@ -85,7 +88,7 @@ class ProjetoController extends Controller
 
 
           }
-         return redirect('/projetos');
+         return redirect('/projetos')-> with('message','Projeto inserido com sucesso!');
     }
 
     /**
