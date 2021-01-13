@@ -450,6 +450,8 @@
         
         $('.select2').val('DO').trigger('change');;
         $('div.imgPreview').empty();
+        $('p.text-danger').remove();
+        $('input, textarea').val('');
      });
      $(function() {
         // Multiple images preview with JavaScript

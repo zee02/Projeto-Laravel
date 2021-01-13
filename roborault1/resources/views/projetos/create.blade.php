@@ -32,12 +32,20 @@
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
+<<<<<<< refs/remotes/origin/main
                     <form role="form" method="POST" action="/projetos" enctype="multipart/form-data">>
+=======
+                    <form role="form" method="POST" action="/projetos" enctype="multipart/form-data">
+>>>>>>> Aula9 Feito
                         @csrf
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="inputDesig">Designação</label>
+<<<<<<< refs/remotes/origin/main
                                 <input type="text" class="form-control" required name="inputDesig" id="inputDesig"
+=======
+                                <input type="text" class="form-control" required value="{{old('inputDesig') }}" name="inputDesig" id="inputDesig"
+>>>>>>> Aula9 Feito
                                     placeholder="Insira a designação do projeto">
                                 @error('inputDesig')
                                 <p class="text-danger">
@@ -53,7 +61,16 @@
 
 
                                     @foreach ($categorias as $categoria)
+<<<<<<< refs/remotes/origin/main
                                     <option value="{{ $categoria->id }}">{{ $categoria->designacao}}</option>
+=======
+
+                                    @if (old('selectCat') == $categoria->id )
+                                    <option value="{{ $categoria->id }}" selected>{{ $categoria->designacao}}</option>
+                                    @else
+                                    <option value="{{ $categoria->id }}">{{ $categoria->designacao}}</option>
+                                    @endif
+>>>>>>> Aula9 Feito
                                     @endforeach
 
                                 </select>
@@ -65,7 +82,11 @@
                             </div>
                             <div class="form-group">
                                 <label for="inputResp">Aluno(s) Responsável(eis)</label>
+<<<<<<< refs/remotes/origin/main
                                 <input type="text" class="form-control" required id="inputResp" name="inputResp"
+=======
+                                <input type="text" class="form-control" required value="{{old('inputResp')}}" id="inputResp" name="inputResp"
+>>>>>>> Aula9 Feito
                                     placeholder="Insira o(s) nome(s) do(s) aluno(s) responsável(eis) pelo projeto">
                                 @error('inputResp')
                                 <p class="text-danger">
@@ -75,7 +96,11 @@
                             </div>
                             <div class="form-group">
                                 <label for="inputAluno">Data de Início do Projeto</label>
+<<<<<<< refs/remotes/origin/main
                                 <input type="date" class="form-control" required id="inputData" name="inputData">
+=======
+                                <input type="date" class="form-control" required value="{{ old('inputData')}}" id="inputData" name="inputData">
+>>>>>>> Aula9 Feito
                                 @error('inputData')
                                 <p class="text-danger">
                                     {{ $errors->first('inputData') }}
@@ -84,7 +109,11 @@
                             </div>
                             <div class="form-group">
                                 <label for="inputAluno">GitHub</label>
+<<<<<<< refs/remotes/origin/main
                                 <input type="text" class="form-control" required id="inputGit" name="inputGit"
+=======
+                                <input type="text" class="form-control" required value="{{ old('inputGit') }}" id="inputGit" name="inputGit"
+>>>>>>> Aula9 Feito
                                     placeholder="Insira o link do GitHub do projeto">
                                 @error('inputGit')
                                 <p class="text-danger">
@@ -95,7 +124,11 @@
                             <div class="form-group">
                                 <label for="textDesc">Descrição</label>
                                 <textarea class="form-control" rows="5" required id="textDesc" name="textDesc"
+<<<<<<< refs/remotes/origin/main
                                     placeholder="Descreva aqui o projeto"></textarea>
+=======
+                                    placeholder="Descreva aqui o projeto">{{ old('inputDesc')  }}</textarea>
+>>>>>>> Aula9 Feito
                                 @error('inptextDescutGit')
                                 <p class="text-danger">
                                     {{ $errors->first('textDesc') }}
@@ -117,7 +150,12 @@
                                     <div class="input-group-append">
                                         <span class="input-group-text">Upload Fotos</span>
                                     </div>
+<<<<<<< refs/remotes/origin/main
                                     @error('imageFile')
+=======
+                                </div>
+                                @error('imageFile')
+>>>>>>> Aula9 Feito
                                     <p class="text-danger">
                                         {{ $errors->first('imageFile') }}
                                     </p>
@@ -130,13 +168,20 @@
                                     </p>
                                     @endforeach
                                     @enderror
+<<<<<<< refs/remotes/origin/main
                                 </div>
+=======
+>>>>>>> Aula9 Feito
                             </div>
                         </div>
                         <!-- /.card-body -->
 
                         <div class="card-footer">
+<<<<<<< refs/remotes/origin/main
                             <button type="submit" class="btn btn-warning" id="btnLimpar"
+=======
+                            <button type="button" class="btn btn-warning" id="btnLimpar"
+>>>>>>> Aula9 Feito
                                 name="btnLimpar">Limpar</button>
                             <button type="submit" class="btn btn-success" id="btnEnviar"
                                 name="btnEnviar">Enviar</button>
