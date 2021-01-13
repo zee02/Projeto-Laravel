@@ -43,7 +43,7 @@ class ProjetoController extends Controller
     public function store(Request $request)
     {
         //Validação do Formulário Projeto
-        request()->validate([
+        request()->validate([ 
             'inputDesig' => 'required',
             'selectCat' => 'required',
             'inputResp' => 'required',
@@ -63,26 +63,26 @@ class ProjetoController extends Controller
 
 
         $projeto-> save();
-       
+
 
         $request->validate([
             'imageFile' => 'required',
             'imageFile.*' => 'mimes:jpeg,jpg,png,gif|max:3096'
           ]);
-      
+
           if($request->hasfile('imageFile')) {
               foreach($request->file('imageFile') as $file)
               {
                   $name = $file->getClientOriginalName();
-                  $file->move(public_path().'/uploads/', $name);  
-                  $imgData[] = $name;  
+                  $file->move(public_path().'/uploads/', $name);
+                  $imgData[] = $name;
               }
-      
+
               $fileModal = new Foto();
-              $fileModal->designacao = json_encode($imgData);              
+              $fileModal->designacao = json_encode($imgData);
               $fileModal->projeto_id = $projeto->id;
               $fileModal->save();
-      
+
 
           }
          return redirect('/projetos');
