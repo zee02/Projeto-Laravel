@@ -53,19 +53,22 @@
                                         <th>Autor(es)</th>
                                         <th>Data de Início</th>
                                         <th>Github</th>
+                                        <th>Eliminar</th>
                                     </tr>
                                 </thead>
                                 <tbody>
 
                                     @foreach ($projetos as $projeto)
                                     <tr>
-                                        <td>{{ $projeto->designacao }}</td>
+                                        <td><a href="/projetos/{{ $projeto->id }}/edit">{{ $projeto->designacao }}</a></td>
                                         <td>{{ $projeto->Categoria->designacao }}</td>
                                         <td>{{ $projeto->responsavel}}</td>
                                         <td>{{ $projeto->dataInicio }}</td>
                                         <td>
                                             <a href="{{ $projeto->github }}">{{ $projeto->github }}</a>
                                         </td>
+                                        <td class="text-center"><i class="fas fa-trash text-danger"></i></td>
+                                        
                                     </tr>
                                     @endforeach
                                     

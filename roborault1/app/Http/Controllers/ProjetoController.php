@@ -111,6 +111,8 @@ class ProjetoController extends Controller
     public function edit(Projeto $projeto)
     {
         //
+        $categorias = Categoria::all(); //select * from categorias;
+        return view('projetos.edit', compact('projeto', 'projeto'));
     }
 
     /**
@@ -123,6 +125,7 @@ class ProjetoController extends Controller
     public function update(Request $request, Projeto $projeto)
     {
         //
+
     }
 
     /**

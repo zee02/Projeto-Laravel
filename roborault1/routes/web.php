@@ -28,3 +28,4 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/projetos', [App\Http\Controllers\ProjetoController::class, 'index'])->name('projetos');
 Route::post('/projetos', [App\Http\Controllers\ProjetoController::class, 'store']);
 Route::get('/projetos/create', [App\Http\Controllers\ProjetoController::class, 'create'])->name('projetos.create');
+Route::get('/projetos/{projeto}/edit', [App\Http\Controllers\ProjetoController::class, 'edit']);
