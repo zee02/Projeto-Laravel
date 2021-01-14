@@ -45,7 +45,7 @@ class ProjetoController extends Controller
     public function store(Request $request)
     {
         //Validação do Formulário Projeto
-        request()->validate([ 
+        request()->validate([
             'inputDesig' => 'required',
             'selectCat' => 'required',
             'inputResp' => 'required',
@@ -68,17 +68,23 @@ class ProjetoController extends Controller
 
 
         $request->validate([
-            'imageFile' => 'required',
+           // 'imageFile' => 'required',
             'imageFile.*' => 'mimes:jpeg,jpg,png,gif|max:3096'
           ]);
 
           if($request->hasfile('imageFile')) {
               $projeto->save();
+              $i = 1;
               foreach($request->file('imageFile') as $file)
               {
                   $name = $file->getClientOriginalName();
-                  $file->move(public_path().'/uploads/', $name);
+                  $extension = pathinfo($name, PATHINFO_EXTENSION);
+                  $designacao = preg_replace(array("/(á|à|ã|â|ä)/","/(Á|À|Ã|Â|Ä)/","/(é|è|ê|ë)/","/(É|È|Ê|Ë)/","/(í|ì|î|ï)/","/(Í|Ì|Î|Ï)/","/(ó|ò|õ|ô|ö)/","/(Ó|Ò|Õ|Ô|Ö)/","/(ú|ù|û|ü)/","/(Ú|Ù|Û|Ü)/","/(ñ)/","/(Ñ)/"),explode(" ","a A e E i I o O u U n N"),$projeto->designacao);
+                  $designacao = str_replace(' ', '', $designacao);
+                  $name = $designacao . $i . "." . $extension;
+                  $file->storeAs('public/uploads/', $name);
                   $imgData[] = $name;
+                  $i++;
               }
 
               $fileModal = new Foto();
@@ -125,6 +131,28 @@ class ProjetoController extends Controller
     public function update(Request $request, Projeto $projeto)
     {
         //
+        //Validação do Formulário Projeto
+
+        request()->validate([
+            'inputDesig' => 'required',
+            'selectCat' => 'required',
+            'inputResp' => 'required',
+            'inputData' => 'required',
+            'inputGit' => 'required',
+            'textDesc' => 'required'
+
+        ]);
+        //Inserção de dados no Forumulário Projeto
+        $projeto = new Projeto();
+        $projeto->designacao = request('inputDesig');
+        $projeto->categoria_id = request('selectCat');
+        $projeto->responsavel = request('inputResp');
+        $projeto->dataInicio = request('inputData');
+        $projeto->github = request('inputGit');
+        $projeto->descricao= request('textDesc');
+
+        $projeto->save();
+        return redirect('/projetos')-> with('message','Projeto inserido com sucesso!');
 
     }
 
