@@ -73,7 +73,7 @@ class ProjetoController extends Controller
           ]);
 
           if($request->hasfile('imageFile')) {
-         
+
               $i = 1;
               foreach($request->file('imageFile') as $file)
               {
@@ -164,9 +164,9 @@ class ProjetoController extends Controller
             // 'imageFile' => 'required',
              'imageFile.*' => 'mimes:jpeg,jpg,png,gif|max:3096'
            ]);
- 
+
            if($request->hasfile('imageFile')) {
-          
+
                $fileModal=Foto::where('projeto_id', $projeto->id)->first();
                $fotos = ($fileModal) ? json_decode($fileModal->designacao) : [];
                $i = count($fotos) + 1;
@@ -181,12 +181,12 @@ class ProjetoController extends Controller
                    $imgData[] = $name;
                    $i++;
                }
- 
+
                $imgData = array_merge($fotos, $imgData);
                $fileModal->designacao = json_encode($imgData);
                $fileModal->save();
- 
- 
+
+
            }
         return redirect('/projetos')-> with('message','Projeto inserido com sucesso!');
 
@@ -201,5 +201,7 @@ class ProjetoController extends Controller
     public function destroy(Projeto $projeto)
     {
         //
+        $projeto->delete();
+        return redirect('/projetos')->with('message', 'Projeto removido com sucesso!');
     }
 }

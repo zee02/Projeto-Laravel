@@ -67,11 +67,18 @@
                                         <td>
                                             <a href="{{ $projeto->github }}">{{ $projeto->github }}</a>
                                         </td>
-                                        <td class="text-center"><i class="fas fa-trash text-danger"></i></td>
-                                        
+                                        <td class="text-center">
+                                            <form role="form" action="/projetos/{{  $projeto->id }}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="link" style="background-color: transparent; border:none">
+                                                <i class="fas fa-trash text-danger" data-toogle="tooltip" title="Eliminar"></i>
+                                            </button>
+                                            </form>
+                                        </td>
                                     </tr>
                                     @endforeach
-                                    
+
                                     </tfoot>
                             </table>
                         </div>
