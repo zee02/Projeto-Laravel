@@ -35,6 +35,22 @@
     <link rel="stylesheet" href="/plugins/daterangepicker/daterangepicker.css">
     <!-- summernote -->
     <link rel="stylesheet" href="/plugins/summernote/summernote-bs4.min.css">
+
+    <style>
+        .pic{
+            display: inline-block;
+            margin: 10px 10px 0 0;
+            position: relative;
+        }
+
+        .close {
+            position: absolute;
+            top: 0;
+            right:0;
+            z-index: 9999;
+        }
+
+    </style>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -465,7 +481,7 @@
                     var reader = new FileReader();
 
                     reader.onload = function(event) {
-                        $($.parseHTML('<img width="200" class="img-thumbnail">')).attr('src', event.target.result).appendTo(imgPreviewPlaceholder);
+                       var img = $.parseHTML('<span class="pic new"><img width="200" class="img-thumbnail" src="' + event.target.result + '"</span>'); $(img).appendTo(imgPreviewPlaceholder);
                     }
 
                     reader.readAsDataURL(input.files[i]);
@@ -475,9 +491,24 @@
         };
 
         $('#images').on('change', function() {
+            $('.new').remove();
             multiImgPreview(this, 'div.imgPreview');
         });
         });    
+
+        function deletefoto(foto, designacao, id) {
+            $('#'+id).remove();
+
+            $.ajax( {
+                type: "delete",
+                url: "/fotos/" + foto + "/" + designacao,
+                data: {_token: '{{ csrf_token() }}'},
+                datatype: "json",
+                success: function(response) {
+                    console.log("OK");
+                }
+            }
+        }
     </script>
 
 

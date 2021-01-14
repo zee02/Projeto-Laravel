@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Foto;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class FotoController extends Controller
 {
@@ -79,8 +80,20 @@ class FotoController extends Controller
      * @param  \App\Models\Foto  $foto
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Foto $foto)
+    public function destroy(Foto $foto, $designacao)
     {
-        //
+        
+        Storage::delete('public/uploads/'.$designacao);
+
+        $fotos = json_decode($foto->designacao);
+
+        if(($key = array_search($designacao, $fotos)) != false) {
+            unset($fotos[$key]);
+            $foto->designacao = $fotos;
+        }else {
+            $foto->designacao = [];
+        }
+        $foto->save();
     }
 }
+

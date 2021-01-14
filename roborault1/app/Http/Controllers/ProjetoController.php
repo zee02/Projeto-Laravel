@@ -73,7 +73,7 @@ class ProjetoController extends Controller
           ]);
 
           if($request->hasfile('imageFile')) {
-              $projeto->save();
+         
               $i = 1;
               foreach($request->file('imageFile') as $file)
               {
@@ -118,7 +118,14 @@ class ProjetoController extends Controller
     {
         //
         $categorias = Categoria::all(); //select * from categorias;
-        return view('projetos.edit', compact('projeto', 'projeto'));
+        $foto = Foto::where('projeto_id', $projeto->id) -> first();
+        if($foto) {
+
+            $designacoes = json_decode($foto->designacao);
+        }else {
+            $designacoes = [];
+        }
+        return view('projetos.edit', compact('projeto', 'projeto', 'foto', 'designacoes'));
     }
 
     /**
@@ -152,6 +159,35 @@ class ProjetoController extends Controller
         $projeto->descricao= request('textDesc');
 
         $projeto->save();
+
+        $request->validate([
+            // 'imageFile' => 'required',
+             'imageFile.*' => 'mimes:jpeg,jpg,png,gif|max:3096'
+           ]);
+ 
+           if($request->hasfile('imageFile')) {
+          
+               $fileModal=Foto::where('projeto_id', $projeto->id)->first();
+               $fotos = ($fileModal) ? json_decode($fileModal->designacao) : [];
+               $i = count($fotos) + 1;
+               foreach($request->file('imageFile') as $file)
+               {
+                   $name = $file->getClientOriginalName();
+                   $extension = pathinfo($name, PATHINFO_EXTENSION);
+                   $designacao = preg_replace(array("/(á|à|ã|â|ä)/","/(Á|À|Ã|Â|Ä)/","/(é|è|ê|ë)/","/(É|È|Ê|Ë)/","/(í|ì|î|ï)/","/(Í|Ì|Î|Ï)/","/(ó|ò|õ|ô|ö)/","/(Ó|Ò|Õ|Ô|Ö)/","/(ú|ù|û|ü)/","/(Ú|Ù|Û|Ü)/","/(ñ)/","/(Ñ)/"),explode(" ","a A e E i I o O u U n N"),$projeto->designacao);
+                   $designacao = str_replace(' ', '', $designacao);
+                   $name = $designacao . $i . "." . $extension;
+                   $file->storeAs('public/uploads/', $name);
+                   $imgData[] = $name;
+                   $i++;
+               }
+ 
+               $imgData = array_merge($fotos, $imgData);
+               $fileModal->designacao = json_encode($imgData);
+               $fileModal->save();
+ 
+ 
+           }
         return redirect('/projetos')-> with('message','Projeto inserido com sucesso!');
 
     }
