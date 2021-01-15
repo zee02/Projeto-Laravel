@@ -205,7 +205,12 @@
                         <img src="/dist/img/avatar5.png" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block"> {{ Auth::user()->name }}</a>
+                        <a href="#" class="d-block">
+                            Se o
+                            @auth
+                            {{ Auth::user()->name }}
+                            @endauth
+                        </a>
 
                     </div>
                     <div class="ml-auto">
@@ -463,8 +468,8 @@
      $('.select2').select2();
 
 
-     $('#btnLimpar').click(function (e) { 
-        
+     $('#btnLimpar').click(function (e) {
+
         $('.select2').val('DO').trigger('change');;
         $('div.imgPreview').empty();
         $('p.text-danger').remove();
@@ -494,7 +499,7 @@
             $('.new').remove();
             multiImgPreview(this, 'div.imgPreview');
         });
-        });    
+        });
 
         function deletefoto(foto, designacao, id) {
             $('#'+id).remove();
