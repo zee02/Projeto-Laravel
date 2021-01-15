@@ -52,7 +52,7 @@
         <ul>
           <li class="active"><a href="/">Início</a></li>
           <li><a href="#about">Sobre Nós</a></li>
-          <li><a href="#projetos">Projetos</a></li>
+          <li><a href="/#projetos">Projetos</a></li>
           <li><a href="#portfolio">Equipa</a></li>
           <li><a href="#team">Galeria</a></li>
           <li><a href="#pricing">Notícias</a></li>

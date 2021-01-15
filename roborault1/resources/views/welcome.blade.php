@@ -437,17 +437,17 @@
                 <div class="col-lg-4 col-md-6 portfolio-item filter-obj">
 
                     @break
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-outros">
                 @default
-                    
+                <div class="col-lg-4 col-md-6 portfolio-item filter-outros">
             @endswitch
             <div class="portfolio-wrap">
-              <img src="{{ asset('storage/upload')."/".json_decode($projeto->fotodes)[0] }}" class="img-fluid" alt="">
-              <div class="portfolio-info">
+             <img src="{{ asset('storage/uploads')."/".json_decode($projeto->fotodes)[0] }}" class="img-fluid" alt="">
+             
+             <div class="portfolio-info">
                 <h4>{{ $projeto->designacao }}</h4>
                 <p>{{ $projeto->responsavel }}</p>
                 <div class="portfolio-links">
-                  <a href="{{ asset('storage/upload')."/".json_decode($projeto->fotodes)[0] }}" data-gall="portfolioGallery" class="venobox" title="App 1"><i class="bx bx-plus"></i></a>
+                  <a href="{{ asset('storage/uploads')."/".json_decode($projeto->fotodes)[0] }}" data-gall="portfolioGallery" class="venobox" title="App 1"><i class="bx bx-plus"></i></a>
                   <a href="/projetos/{{ $projeto->id }}" title="Saber Mais"><i class="bx bx-link"></i></a>
                 </div>
               </div>
@@ -455,21 +455,9 @@
           </div>
             @endforeach
          
-{{-- 
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-2.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Web 3</h4>
-                <p>Web</p>
-                <div class="portfolio-links">
-                  <a href="assets/img/portfolio/portfolio-2.jpg" data-gall="portfolioGallery" class="venobox" title="Web 3"><i class="bx bx-plus"></i></a>
-                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
+ 
+          
+{{--
           <div class="col-lg-4 col-md-6 portfolio-item filter-app">
             <div class="portfolio-wrap">
               <img src="assets/img/portfolio/portfolio-3.jpg" class="img-fluid" alt="">

@@ -4,14 +4,14 @@
 <main id="main">
 
     <!-- ======= Breadcrumbs ======= -->
-    <section id="breadcrumbs" class="breadcrumbs">
+    <section id="breadcrumbs" class="breadcrumbs" style="background-color: #e8e8e8">
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
-          <h2>Portfolio Details</h2>
+          <h2></h2>
           <ol>
-            <li><a href="index.html">Home</a></li>
-            <li>Portfolio Details</li>
+            <li><a href="/">Início</a></li>
+            <li>Detalhes Projeto</li>
           </ol>
         </div>
 
@@ -25,25 +25,27 @@
         <div class="row">
 
           <div class="col-lg-8">
-            <h2 class="portfolio-title">This is an example of portfolio detail</h2>
+
+            <h2 class="portfolio-title">{{ $projeto->designacao }}</h2>
             <div class="owl-carousel portfolio-details-carousel">
-              <img src="assets/img/portfolio/portfolio-details-1.jpg" class="img-fluid" alt="">
-              <img src="assets/img/portfolio/portfolio-details-2.jpg" class="img-fluid" alt="">
-              <img src="assets/img/portfolio/portfolio-details-3.jpg" class="img-fluid" alt="">
+              @foreach ($fotos as $foto)
+              <img style="max-height: 500px;" src="{{ asset('storage/uploads')."/".$foto }}" class="img-fluid" alt="">
+
+              @endforeach
             </div>
           </div>
 
           <div class="col-lg-4 portfolio-info">
-            <h3>Project information</h3>
+            <h3><u>Informações do Projeto</u></h3>
             <ul>
-              <li><strong>Category</strong>: Web design</li>
-              <li><strong>Client</strong>: ASU Company</li>
-              <li><strong>Project date</strong>: 01 March, 2020</li>
-              <li><strong>Project URL</strong>: <a href="#">www.example.com</a></li>
+              <li><strong>Category</strong>: {{ $projeto->Categoria->designacao }}</li>
+              <li><strong>Aluno(s)</strong>: {{ $projeto->responsavel }}</li>
+              <li><strong>Data de Início</strong>: {{ $projeto->dataInicio }}</li>
+              <li><strong>Github</strong>: <a href="{{ $projeto->github }}">{{ $projeto->github }}</a></li>
             </ul>
 
             <p>
-              Autem ipsum nam porro corporis rerum. Quis eos dolorem eos itaque inventore commodi labore quia quia. Exercitationem repudiandae officiis neque suscipit non officia eaque itaque enim. Voluptatem officia accusantium nesciunt est omnis tempora consectetur dignissimos. Sequi nulla at esse enim cum deserunt eius.
+                {{ $projeto->descricao }}
             </p>
           </div>
 
