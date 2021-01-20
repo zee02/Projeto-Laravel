@@ -72,6 +72,7 @@ class ProjetoController extends Controller
             'imageFile.*' => 'mimes:jpeg,jpg,png,gif|max:3096'
           ]);
 
+          $fileModal = new Foto();
           if($request->hasfile('imageFile')) {
 
               $i = 1;
@@ -87,13 +88,14 @@ class ProjetoController extends Controller
                   $i++;
               }
 
-              $fileModal = new Foto();
-              $fileModal->designacao = json_encode($imgData);
-              $fileModal->projeto_id = $projeto->id;
-              $fileModal->save();
-
-
+          }else {
+              $imgData = [];
           }
+
+          $fileModal->designacao = json_encode($imgData);
+          $fileModal->projeto_id = $projeto->id;
+          $fileModal->save();
+
          return redirect('/projetos')-> with('message','Projeto inserido com sucesso!');
     }
 
@@ -171,7 +173,12 @@ class ProjetoController extends Controller
 
                $fileModal=Foto::where('projeto_id', $projeto->id)->first();
                $fotos = ($fileModal) ? json_decode($fileModal->designacao) : [];
-               $i = count($fotos) + 1;
+               $i = 1;
+               if(count($fotos) > 0) {
+                    $i = (int) filter_var($fotos[count($fotos)-1], FILTER_SANITIZE_NUMBER_INT) +1;
+               }
+
+               
                foreach($request->file('imageFile') as $file)
                {
                    $name = $file->getClientOriginalName();

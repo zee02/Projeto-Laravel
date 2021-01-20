@@ -471,9 +471,9 @@
      $('#btnLimpar').click(function (e) {
 
         $('.select2').val('DO').trigger('change');;
-        $('div.imgPreview').empty();
+        $('.new').remove();
         $('p.text-danger').remove();
-        $('input, textarea').val('');
+        $('input[type=text],input[type=date], textarea').val('');
      });
      $(function() {
         // Multiple images preview with JavaScript
