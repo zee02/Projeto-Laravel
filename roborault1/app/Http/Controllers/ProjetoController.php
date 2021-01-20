@@ -8,6 +8,7 @@ use App\Models\Categoria;
 use App\Models\Foto;
 use Illuminate\Http\Request;
 use Illuminate\Queue\RedisQueue;
+use Illuminate\Support\Facades\Storage;
 
 class ProjetoController extends Controller
 {
@@ -191,7 +192,6 @@ class ProjetoController extends Controller
             $imgData = array_merge($fotos, $imgData);
             $fileModal->designacao = json_encode($imgData);
             $fileModal->save();
-
         }
 
         return redirect('/projetos')->with('message', 'Projeto inserido com sucesso!');
@@ -206,6 +206,11 @@ class ProjetoController extends Controller
     public function destroy(Projeto $projeto)
     {
         //
+        $fileModal = Foto::where('projeto_id', $projeto->id)->first();
+        $fotos = ($fileModal) ? json_decode($fileModal->designacao) : [];
+        foreach ($fotos as $foto) {
+            Storage::delete('public/uploads/'.$foto);
+        }
         $projeto->delete();
         return redirect('/projetos')->with('message', 'Projeto removido com sucesso!');
     }
