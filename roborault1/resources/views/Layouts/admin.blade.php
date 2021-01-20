@@ -206,7 +206,6 @@
                     </div>
                     <div class="info">
                         <a href="#" class="d-block">
-                            Se o
                             @auth
                             {{ Auth::user()->name }}
                             @endauth

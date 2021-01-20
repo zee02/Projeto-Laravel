@@ -61,42 +61,40 @@ class ProjetoController extends Controller
         $projeto->responsavel = request('inputResp');
         $projeto->dataInicio = request('inputData');
         $projeto->github = request('inputGit');
-        $projeto->descricao= request('textDesc');
+        $projeto->descricao = request('textDesc');
 
 
-        $projeto-> save();
+        $projeto->save();
 
 
         $request->validate([
-           // 'imageFile' => 'required',
+            // 'imageFile' => 'required',
             'imageFile.*' => 'mimes:jpeg,jpg,png,gif|max:3096'
-          ]);
+        ]);
 
-          $fileModal = new Foto();
-          if($request->hasfile('imageFile')) {
+        $fileModal = new Foto();
+        if ($request->hasfile('imageFile')) {
 
-              $i = 1;
-              foreach($request->file('imageFile') as $file)
-              {
-                  $name = $file->getClientOriginalName();
-                  $extension = pathinfo($name, PATHINFO_EXTENSION);
-                  $designacao = preg_replace(array("/(á|à|ã|â|ä)/","/(Á|À|Ã|Â|Ä)/","/(é|è|ê|ë)/","/(É|È|Ê|Ë)/","/(í|ì|î|ï)/","/(Í|Ì|Î|Ï)/","/(ó|ò|õ|ô|ö)/","/(Ó|Ò|Õ|Ô|Ö)/","/(ú|ù|û|ü)/","/(Ú|Ù|Û|Ü)/","/(ñ)/","/(Ñ)/"),explode(" ","a A e E i I o O u U n N"),$projeto->designacao);
-                  $designacao = str_replace(' ', '', $designacao);
-                  $name = $designacao . $i . "." . $extension;
-                  $file->storeAs('public/uploads/', $name);
-                  $imgData[] = $name;
-                  $i++;
-              }
+            $i = 1;
+            foreach ($request->file('imageFile') as $file) {
+                $name = $file->getClientOriginalName();
+                $extension = pathinfo($name, PATHINFO_EXTENSION);
+                $designacao = preg_replace(array("/(á|à|ã|â|ä)/", "/(Á|À|Ã|Â|Ä)/", "/(é|è|ê|ë)/", "/(É|È|Ê|Ë)/", "/(í|ì|î|ï)/", "/(Í|Ì|Î|Ï)/", "/(ó|ò|õ|ô|ö)/", "/(Ó|Ò|Õ|Ô|Ö)/", "/(ú|ù|û|ü)/", "/(Ú|Ù|Û|Ü)/", "/(ñ)/", "/(Ñ)/"), explode(" ", "a A e E i I o O u U n N"), $projeto->designacao);
+                $designacao = str_replace(' ', '', $designacao);
+                $name = $designacao . $i . "." . $extension;
+                $file->storeAs('public/uploads/', $name);
+                $imgData[] = $name;
+                $i++;
+            }
+        } else {
+            $imgData = [];
+        }
 
-          }else {
-              $imgData = [];
-          }
+        $fileModal->designacao = json_encode($imgData);
+        $fileModal->projeto_id = $projeto->id;
+        $fileModal->save();
 
-          $fileModal->designacao = json_encode($imgData);
-          $fileModal->projeto_id = $projeto->id;
-          $fileModal->save();
-
-         return redirect('/projetos')-> with('message','Projeto inserido com sucesso!');
+        return redirect('/projetos')->with('message', 'Projeto inserido com sucesso!');
     }
 
     /**
@@ -107,7 +105,7 @@ class ProjetoController extends Controller
      */
     public function show(Projeto $projeto)
     {
-        $foto = Foto::where('projeto_id', $projeto->id) -> first();
+        $foto = Foto::where('projeto_id', $projeto->id)->first();
         $fotos = json_decode($foto->designacao);
         return view('projetos.show', compact('projeto', 'fotos'));
     }
@@ -122,11 +120,11 @@ class ProjetoController extends Controller
     {
         //
         $categorias = Categoria::all(); //select * from categorias;
-        $foto = Foto::where('projeto_id', $projeto->id) -> first();
-        if($foto) {
+        $foto = Foto::where('projeto_id', $projeto->id)->first();
+        if ($foto) {
 
             $designacoes = json_decode($foto->designacao);
-        }else {
+        } else {
             $designacoes = [];
         }
         return view('projetos.edit', compact('projeto', 'projeto', 'foto', 'designacoes', 'categorias'));
@@ -154,51 +152,49 @@ class ProjetoController extends Controller
 
         ]);
         //Inserção de dados no Forumulário Projeto
-        $projeto = new Projeto();
+
         $projeto->designacao = request('inputDesig');
         $projeto->categoria_id = request('selectCat');
         $projeto->responsavel = request('inputResp');
         $projeto->dataInicio = request('inputData');
         $projeto->github = request('inputGit');
-        $projeto->descricao= request('textDesc');
+        $projeto->descricao = request('textDesc');
 
         $projeto->save();
 
         $request->validate([
             // 'imageFile' => 'required',
-             'imageFile.*' => 'mimes:jpeg,jpg,png,gif|max:3096'
-           ]);
+            'imageFile.*' => 'mimes:jpeg,jpg,png,gif|max:3096'
+        ]);
 
-           if($request->hasfile('imageFile')) {
+        if ($request->hasfile('imageFile')) {
 
-               $fileModal=Foto::where('projeto_id', $projeto->id)->first();
-               $fotos = ($fileModal) ? json_decode($fileModal->designacao) : [];
-               $i = 1;
-               if(count($fotos) > 0) {
-                    $i = (int) filter_var($fotos[count($fotos)-1], FILTER_SANITIZE_NUMBER_INT) +1;
-               }
-
-               
-               foreach($request->file('imageFile') as $file)
-               {
-                   $name = $file->getClientOriginalName();
-                   $extension = pathinfo($name, PATHINFO_EXTENSION);
-                   $designacao = preg_replace(array("/(á|à|ã|â|ä)/","/(Á|À|Ã|Â|Ä)/","/(é|è|ê|ë)/","/(É|È|Ê|Ë)/","/(í|ì|î|ï)/","/(Í|Ì|Î|Ï)/","/(ó|ò|õ|ô|ö)/","/(Ó|Ò|Õ|Ô|Ö)/","/(ú|ù|û|ü)/","/(Ú|Ù|Û|Ü)/","/(ñ)/","/(Ñ)/"),explode(" ","a A e E i I o O u U n N"),$projeto->designacao);
-                   $designacao = str_replace(' ', '', $designacao);
-                   $name = $designacao . $i . "." . $extension;
-                   $file->storeAs('public/uploads/', $name);
-                   $imgData[] = $name;
-                   $i++;
-               }
-
-               $imgData = array_merge($fotos, $imgData);
-               $fileModal->designacao = json_encode($imgData);
-               $fileModal->save();
+            $fileModal = Foto::where('projeto_id', $projeto->id)->first();
+            $fotos = ($fileModal) ? json_decode($fileModal->designacao) : [];
+            $i = 1;
+            if (count($fotos) > 0) {
+                $i = (int) filter_var($fotos[count($fotos) - 1], FILTER_SANITIZE_NUMBER_INT) + 1;
+            }
 
 
-           }
-        return redirect('/projetos')-> with('message','Projeto inserido com sucesso!');
+            foreach ($request->file('imageFile') as $file) {
+                $name = $file->getClientOriginalName();
+                $extension = pathinfo($name, PATHINFO_EXTENSION);
+                $designacao = preg_replace(array("/(á|à|ã|â|ä)/", "/(Á|À|Ã|Â|Ä)/", "/(é|è|ê|ë)/", "/(É|È|Ê|Ë)/", "/(í|ì|î|ï)/", "/(Í|Ì|Î|Ï)/", "/(ó|ò|õ|ô|ö)/", "/(Ó|Ò|Õ|Ô|Ö)/", "/(ú|ù|û|ü)/", "/(Ú|Ù|Û|Ü)/", "/(ñ)/", "/(Ñ)/"), explode(" ", "a A e E i I o O u U n N"), $projeto->designacao);
+                $designacao = str_replace(' ', '', $designacao);
+                $name = $designacao . $i . "." . $extension;
+                $file->storeAs('public/uploads/', $name);
+                $imgData[] = $name;
+                $i++;
+            }
 
+            $imgData = array_merge($fotos, $imgData);
+            $fileModal->designacao = json_encode($imgData);
+            $fileModal->save();
+
+        }
+
+        return redirect('/projetos')->with('message', 'Projeto inserido com sucesso!');
     }
 
     /**

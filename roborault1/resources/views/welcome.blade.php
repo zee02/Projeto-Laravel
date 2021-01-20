@@ -428,7 +428,7 @@
         <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="400">
 
             @foreach($projetos as $projeto)
-                @if(json_decode($projeto->$fotodes)!=[])
+                @if(json_decode($projeto->fotodes)!=[])
                 
                     @switch($projeto->categoria_id)
                         @case(1)
